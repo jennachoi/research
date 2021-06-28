@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.jiwon.prj.member.map.MemberMap">
+	<insert id="memberInsert">
+		insert into member(email,name,password,filename,fileuuid)
+		values(#{email},#{name},#{password},#{fileName},#{fileUuid})
+	</insert>
+	
+	<select id="memberSelect">
+	</select>
+	
+	<delete id="memberDelete">
+		update member set status = 'D' where email=#{email}
+	</delete>
+	
+	<update id="memberUpdate">
+	</update>
+	
+	<select id="memberSelectList" parameterType="String"
+	resultType="co.jiwon.prj.member.vo.MemberVO">
+		select * from member 
+		<if test='status != "A"'>
+			where status = #{status}
+		</if>
+	</select>
+</mapper>
